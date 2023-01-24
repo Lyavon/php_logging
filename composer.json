@@ -1,0 +1,23 @@
+{
+  "name": "lyavon/logging",
+  "version": "0.1",
+  "type": "library",
+  "description": "psr-3 implementation of level-dependent logging",
+  "homepage": "https://github.com/Lyavon/php_logging",
+  "license": "GPL3v3",
+  "authors": [
+    {
+      "name": "Leonid Ragunovich",
+      "email": "leonid.ragunovich@mail.ru",
+      "role": "Developer"
+    }
+  ],
+  "require": {
+    "psr/log": "^3.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "Lyavon\\Logging\\": "Logging"
+    }
+  }
+}
