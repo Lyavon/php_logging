@@ -1,6 +1,6 @@
 {
   "name": "lyavon/logging",
-  "version": "0.1",
+  "version": "0.1.1",
   "type": "library",
   "description": "psr-3 implementation of level-dependent logging",
   "homepage": "https://github.com/Lyavon/php_logging",

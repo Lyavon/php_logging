@@ -28,8 +28,6 @@ Optional logging level argument sets threshold for the logger.
 ```php
 <?php
 
-use Psr\Log\LogLevel;
-
 use Lyavon\Logging\SysLogger;
 use Lyavon\Logging\StdLogger;
 
