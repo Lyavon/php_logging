@@ -70,9 +70,7 @@ abstract class AbstractPriorityLogger extends AbstractLogger
     protected static function substitute(string|\Stringable $message, array $context = []): string
     {
         foreach ($context as $k => $v) {
-            if (is_string($v) || method_exists($v, '__toString')) {
-                $message = str_replace('{' . $k . '}', $v, $message);
-            }
+            $message = str_replace('{' . $k . '}', var_export($v, true), $message);
         }
         return $message;
     }

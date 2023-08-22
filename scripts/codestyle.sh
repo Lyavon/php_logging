@@ -21,4 +21,4 @@
 src="$(dirname -- "$(realpath "$(dirname -- "$0")")")/Logging"
 php-cs-fixer \
   fix \
-  Logging
+  "$src"
