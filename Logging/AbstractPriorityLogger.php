@@ -1,12 +1,41 @@
 <?php
+/* Copyright 2023 Leonid Ragunovich
+ *
+ * This file is part of php_logging.
+ *
+ * php_logging is free software: you can redistribute it and/or modify it under
+ * the terms of the GNU General Public License as published by the Free
+ * Software Foundation, either version 3 of the License, or (at your option)
+ * any later version.
+ *
+ * This program is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+ * FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for
+ * more details.
+ *
+ * You should have received a copy of the GNU General Public License along with
+ * this program (see LICENSE file in parent directory). If not, see
+ * <https://www.gnu.org/licenses/>.
+ */
 
 namespace Lyavon\Logging;
 
 use Psr\Log\AbstractLogger;
 use Psr\Log\LogLevel;
 
+/**
+ * AbstractPriorityLogger provides default mechanisms for context subtitution
+ * and psr-3/syslog logging levels conversion.
+ */
 abstract class AbstractPriorityLogger extends AbstractLogger
 {
+    /**
+     * Convert psr-3 priority level to syslog one.
+     *
+     * @param mixed $level psr-3 priority level.
+     * @return int Syslog priority level. Returns LOG_DEBUG for unknown level
+     * provided.
+     */
     protected static function logLevelPriority(mixed $level): int
     {
         switch ($level) {
@@ -30,7 +59,15 @@ abstract class AbstractPriorityLogger extends AbstractLogger
         }
     }
 
-    protected static function substitute(string $message, array $context = []): string
+    /**
+     * Substitute existing message placeholders with corresponding context
+     * values.
+     *
+     * @param string|\Stringable $message Message with placeholders.
+     * @param array $context Array with values for subtitution.
+     * @return string Message with all possible substitutions made.
+     */
+    protected static function substitute(string|\Stringable $message, array $context = []): string
     {
         foreach ($context as $k => $v) {
             if (is_string($v) || method_exists($v, '__toString')) {
